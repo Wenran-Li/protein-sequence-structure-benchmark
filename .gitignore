@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.log
+*.tmp
+.env
+.env.*
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+.DS_Store
