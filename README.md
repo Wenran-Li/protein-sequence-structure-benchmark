@@ -113,33 +113,3 @@ For MultiFlow, the release contains the recovered current local
 patch and archived benchmark Hydra configuration. The complete
 identity of the patch with the historical execution-time working
 tree is not independently verified.
-
-## Reproducibility archives
-
-Three portable archives are provided in `reproducibility/`:
-
-- `statistics_release_final.zip`: statistical reanalysis, including
-  inverse-folding native and generated sequence records.
-- `structure_evaluation_portable.zip`: structures and code to
-  independently recompute 496 structure-prediction metric records.
-- `provenance_release.zip`: evaluated AF3 output identities,
-  MultiFlow Hydra configuration and local modifications,
-  and available checkpoint hashes.
-
-The structural evaluation archive was independently tested, with
-496/496 metric records reproduced to numerical precision.
-
-The larger co-design structural archive contains 2,000 generated
-structures and 2,000 ESMFold-refolded structures. A public download
-URL will be provided separately.
-
-See `README_statistics.md` for statistical reanalysis instructions.
-
-Limitations: co-design designability is conditional on successful
-evaluation and depends on ESMFold-based structural predictions.
-Experimental foldability and training-data separation have not
-been independently established.
-
-The historical rationale for AF3 output selection and complete
-historical identity of the recovered MultiFlow patch remain
-unverified.
