@@ -1,0 +1,4 @@
+# Reanalysis validated on Python 3.9.16 at lisplab2 (see README).
+numpy==1.26.0
+pandas==1.5.2
+scipy==1.11.4

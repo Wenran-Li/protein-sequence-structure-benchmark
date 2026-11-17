@@ -53,5 +53,93 @@ The original model inference pipelines require
 their respective model implementations,
 checkpoints, and computational dependencies.
 
-Statistical scripts are being adapted for
-portable execution from this repository.
+Portable statistical reanalysis scripts and their input data are provided in this repository and in the tested statistical release archive.
+
+## Reproducibility materials (November 2026)
+
+The `reproducibility/` directory contains:
+
+- `statistics_release_final.zip`: portable statistical reanalysis,
+  including reconstruction of inverse-folding sequence recovery.
+- `structure_evaluation_portable.zip`: experimental and predicted
+  structures and scripts for recalculating TM-score, C-alpha RMSD
+  and lDDT-C-alpha for 496 model-target pairs.
+- `provenance_release.zip`: evaluated AlphaFold 3 output identities,
+  MultiFlow inference configurations, recovered local modifications,
+  and available checkpoint identifiers and SHA-256 hashes.
+
+The statistical and structural evaluation archives were independently
+tested after extraction. All 496 structural metric records were
+successfully recomputed.
+
+### Statistical reanalysis
+
+The tested environment uses Python 3.9.16, NumPy 1.26.0,
+Pandas 1.5.2 and SciPy 1.11.4.
+
+See `README_statistics.md` for detailed instructions.
+
+### Structural metric reanalysis
+
+Additional dependencies: Biopython 1.79 and tmtools 0.0.2.
+
+After extracting the structural evaluation archive, run:
+
+    python scripts/evaluate_structure_prediction.py       --base structure_prediction       --reference structure_prediction/evaluation_results/four_model_paired_complete.csv       --out results/historical       --mode historical
+
+This reproduces the archived historical metric calculations.
+
+### Co-design structural data
+
+An additional archive contains 2,000 generated PDB files,
+2,000 independently refolded PDB files, and sequence-containing
+manifests.
+
+Its public download location will be added after upload to a
+stable release service.
+
+Reported designability is conditional on successful evaluation,
+depends on ESMFold-based refolding, and does not establish
+experimental foldability or end-to-end generation yield.
+
+### Provenance limitations
+
+For AlphaFold 3, the exact evaluated CIF files are identified
+by their archived paths and SHA-256 checksums. The historical
+rationale for selecting the earlier 8YHN_A output remains
+unverified.
+
+For MultiFlow, the release contains the recovered current local
+patch and archived benchmark Hydra configuration. The complete
+identity of the patch with the historical execution-time working
+tree is not independently verified.
+
+## Reproducibility archives
+
+Three portable archives are provided in `reproducibility/`:
+
+- `statistics_release_final.zip`: statistical reanalysis, including
+  inverse-folding native and generated sequence records.
+- `structure_evaluation_portable.zip`: structures and code to
+  independently recompute 496 structure-prediction metric records.
+- `provenance_release.zip`: evaluated AF3 output identities,
+  MultiFlow Hydra configuration and local modifications,
+  and available checkpoint hashes.
+
+The structural evaluation archive was independently tested, with
+496/496 metric records reproduced to numerical precision.
+
+The larger co-design structural archive contains 2,000 generated
+structures and 2,000 ESMFold-refolded structures. A public download
+URL will be provided separately.
+
+See `README_statistics.md` for statistical reanalysis instructions.
+
+Limitations: co-design designability is conditional on successful
+evaluation and depends on ESMFold-based structural predictions.
+Experimental foldability and training-data separation have not
+been independently established.
+
+The historical rationale for AF3 output selection and complete
+historical identity of the recovered MultiFlow patch remain
+unverified.
