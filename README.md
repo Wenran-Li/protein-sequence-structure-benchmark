@@ -95,8 +95,7 @@ An additional archive contains 2,000 generated PDB files,
 2,000 independently refolded PDB files, and sequence-containing
 manifests.
 
-Its public download location will be added after upload to a
-stable release service.
+The complete co-design structural dataset is available as a [versioned GitHub Release asset](https://github.com/Wenran-Li/protein-sequence-structure-benchmark/releases/download/reproducibility-v1.0/codesign_structures_release.tar.gz). The release also provides a SHA-256 checksum.
 
 Reported designability is conditional on successful evaluation,
 depends on ESMFold-based refolding, and does not establish
