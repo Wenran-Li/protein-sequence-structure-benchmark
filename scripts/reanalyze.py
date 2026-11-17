@@ -64,7 +64,7 @@ def paired(matrix, names, metric, scale=1, tie_tol=1e-10):
             raise ValueError(f'Invalid paired data in {metric}: {a}/{b}')
         test_diff=diff.copy()
         test_diff[np.abs(test_diff) <= tie_tol]=0.0
-        p=float(wilcoxon(test_diff,alternative='two-sided',zero_method='wilcox',method='auto').pvalue) if np.any(test_diff!=0) else 1.
+        p=float(wilcoxon(diff,alternative='two-sided',zero_method='wilcox',method='auto').pvalue) if np.any(diff!=0) else 1.
         lo,hi=boot_mean_ci(diff)
         records.append({'metric':metric,'model_a':a,'model_b':b,'n_targets':len(diff),
           'mean_difference':diff.mean(),'ci95_low':lo,'ci95_high':hi,

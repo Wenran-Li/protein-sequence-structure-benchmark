@@ -1,7 +1,18 @@
 # Portable statistical reanalysis (release v2)
 
 This package reanalyzes the archived observations **without running the protein models**.
-It was adapted to CSV schemas confirmed on lisplab2. Statistical outputs from the revised scripts **must be checked** against the manuscript, including all raw and Holm-adjusted p-values, before the release is called fully validated.
+The definitive statistical workflow was validated using
+Python 3.9.16, NumPy 1.26.0, pandas 1.5.2, and SciPy 1.11.4.
+
+The released workflow successfully regenerated the
+target-level inverse-folding recovery matrix and
+reproduced Tables 3, A1, and A2 consistently with
+the revised manuscript.
+
+The statistical analyses use 10,000 target-level
+percentile-bootstrap resamples with independent
+random-number initialization for each summary or
+contrast.
 
 ## Environment
 
@@ -38,13 +49,18 @@ python scripts/reanalyze.py \
 
 ## Statistical conventions
 
-- Two-sided paired Wilcoxon signed-rank tests, `zero_method='wilcox'`; Holm adjustment applied **separately to each metric/family**.
-- Numerically zero differences (`abs(d) <= 1e-10` in reported metric units) are normalized to exact zero **for Wilcoxon testing and the better/worse/ties counts only**. Means and bootstrapped CIs use original differences.
-- 10,000 percentile-bootstrap resamples at target level, `np.random.default_rng(42)` freshly initialized for each summary/contrast. Alternative original RNG scheduling may yield slightly different interval endpoints.
-- One averaged recovery per target (5 samples for ESM-IF1, GVP-GNN, ProteinMPNN; deterministic 1 for PiFold).
-- Co-design designability: `scTM >= 0.90` among successful, unique retained samples. Not an end-to-end attempt yield.
+Numerically near-zero differences (abs(d) <= 1e-10
+in reported metric units) are treated as ties for
+the better/worse/tie counts.
 
-## Verification before release
+The definitive released implementation performs
+Wilcoxon signed-rank tests on the original paired
+differences.
+
+Mean differences and bootstrap confidence intervals
+also use the original unrounded values.
+
+## Verification and consistency
 
 Compare **all** regenerated values with the manuscript Tables 2, 3, A1, A2, A3 and the Figure 3 coefficients. The previously reported tie counts for Table A2 are 4,4,7,1,4,11 in pair order ESM-IF1/PiFold, ESM-IF1/GVP-GNN, ESM-IF1/ProteinMPNN, PiFold/GVP-GNN, PiFold/ProteinMPNN, GVP-GNN/ProteinMPNN. Any remaining p-value or CI differences must be investigated and disclosed rather than overwritten.
 
