@@ -50,12 +50,19 @@ def boot_mean_ci(x,n=N_BOOT,seed=SEED):
     return np.percentile(vals,[2.5,97.5])
 
 def paired(matrix, names, metric, scale=1, tie_tol=1e-10):
-    """Paired tests with numerically stable ties in the *scaled* metric.
+    """Perform paired model comparisons.
 
-    E.g., inverse-folding recovery is expressed in percentage points; 1e-10
-    percentage points is well below the resolution of one residue difference.
-    Differences near zero are set to exact zero for Wilcoxon and tie counts.
-    Descriptive mean differences and bootstrap CIs use original differences.
+    Paired differences are calculated from the original values.
+    A tolerance of 1e-10 in scaled metric units is applied only
+    to win/loss/tie classification.
+
+    Wilcoxon signed-rank tests use the original, unmodified paired
+    differences with a two-sided alternative and zero_method='wilcox'.
+    The tolerance does not modify Wilcoxon inputs, mean differences,
+    or bootstrap confidence intervals.
+
+    Confidence intervals use 10,000 bootstrap resamples.
+    Holm correction is applied within each metric family.
     """
     records=[]
     for a,b in itertools.combinations(names,2):
@@ -187,7 +194,7 @@ def main():
     if args.inverse: inverse(args.inverse,args.out)
     if args.codesign: codesign(args.codesign,args.out)
     (args.out/'environment.json').write_text(json.dumps({'numpy':np.__version__,'pandas':pd.__version__,
-        'scipy':scipy_version,'bootstrap_resamples':N_BOOT,'seed':SEED,'wilcoxon':'two-sided, zero_method=wilcox, abs(diff)<=1e-10 treated as tie (scaled units)',
+        'scipy':scipy_version,'bootstrap_resamples':N_BOOT,'seed':SEED,'wilcoxon':'two-sided, zero_method=wilcox; original paired differences used without tolerance modification; abs(diff)<=1e-10 applies only to win/loss/tie counts (scaled units)',
         'holm':'within metric/family'},indent=2)+'\n')
     print('Wrote:',args.out.resolve())
 if __name__=='__main__': main()

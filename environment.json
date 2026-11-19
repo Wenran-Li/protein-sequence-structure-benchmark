@@ -1,0 +1,9 @@
+{
+  "numpy": "1.26.0",
+  "pandas": "1.5.2",
+  "scipy": "1.11.4",
+  "bootstrap_resamples": 10000,
+  "seed": 42,
+  "wilcoxon": "two-sided, zero_method=wilcox; original paired differences used without tolerance modification; abs(diff)<=1e-10 applies only to win/loss/tie counts (scaled units)",
+  "holm": "within metric/family"
+}
