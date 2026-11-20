@@ -1,0 +1,5 @@
+model,n,any_screened_issue,severe_ca_proximity,N_CA_outlier_fraction_mean,N_CA_outlier_fraction_p95,N_CA_outlier_fraction_gt_1pct,N_CA_outlier_fraction_gt_5pct,CA_C_outlier_fraction_mean,CA_C_outlier_fraction_p95,CA_C_outlier_fraction_gt_1pct,CA_C_outlier_fraction_gt_5pct,C_N_outlier_fraction_mean,C_N_outlier_fraction_p95,C_N_outlier_fraction_gt_1pct,C_N_outlier_fraction_gt_5pct,CA_CA_outlier_fraction_mean,CA_CA_outlier_fraction_p95,CA_CA_outlier_fraction_gt_1pct,CA_CA_outlier_fraction_gt_5pct
+Chroma,119,20,20,0.0,0.0,0,0,0.0,0.0,0,0,0.0,0.0,0,0,0.0,0.0,0,0
+MultiFlow,397,281,44,0.0,0.0,0,0,0.0,0.0,0,0,0.007689144753229774,0.020202020202020204,160,0,0.0,0.0,0,0
+ProteinGenerator,28,5,0,0.0,0.0,0,0,0.0,0.0,0,0,0.0017965005402191332,0.010083244505355058,4,0,0.0,0.0,0,0
+Protpardelle-1c,220,34,13,3.0303030303030306e-05,0.0,0,0,0.0,0.0,0,0,0.0004947603214577779,0.003427884091499624,3,0,0.00019427828678994012,0.0,2,0
